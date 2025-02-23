@@ -123,6 +123,9 @@ class RuleInvoker
         if (is_string($pass)) {
             $message = $pass;
         }
+        if (is_callable($message)) {
+            $message = $message($entity, $this->options + $scope);
+        }
         if ($this->name) {
             $message = [$this->name => $message];
         } else {
