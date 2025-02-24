@@ -16,6 +16,8 @@ declare(strict_types=1);
  */
 namespace Cake\Datasource;
 
+use Closure;
+
 /**
  * Contains logic for invoking an application rule.
  *
@@ -123,7 +125,7 @@ class RuleInvoker
         if (is_string($pass)) {
             $message = $pass;
         }
-        if (is_callable($message)) {
+        if ($message instanceof Closure) {
             $message = $message($entity, $this->options + $scope);
         }
         if ($this->name) {
